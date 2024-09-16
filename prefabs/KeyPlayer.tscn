@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://djbchm6aecc8p"]
+
+[ext_resource type="Script" path="res://scripts/arena/player/KeyboardMovement.cs" id="1_wcw80"]
+[ext_resource type="Script" path="res://scripts/arena/player/PlayerStats.cs" id="2_2rcbk"]
+[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_eosjl"]
+[ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_0gmlf"]
+[ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_h1uln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwg"]
+size = Vector2(18, 42)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqrtd"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+anti_aliasing_size = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnej3"]
+bg_color = Color(0.929412, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("firePoint")]
+collision_layer = 2
+script = ExtResource("1_wcw80")
+firePoint = NodePath("FirePoint")
+
+[node name="PlayerStats" type="Node2D" parent="."]
+script = ExtResource("2_2rcbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, -1.90735e-06)
+scale = Vector2(0.140625, 0.328125)
+texture = ExtResource("3_eosjl")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oanwg")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(15, 0)
+script = ExtResource("4_0gmlf")
+bulletScn = ExtResource("5_h1uln")
+
+[node name="Icon" type="Sprite2D" parent="FirePoint"]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_eosjl")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 16.0
+offset_bottom = -24.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hqrtd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cnej3")
+value = 50.0
+rounded = true
+show_percentage = false

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1u82x1ic2xoj"]
+
+[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="1_4huyd"]
+[ext_resource type="Script" path="res://scripts/arena/player/Bullet.cs" id="1_uiq27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_317gj"]
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_uiq27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_317gj")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("1_4huyd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

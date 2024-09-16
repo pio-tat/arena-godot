@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmef20rgu437t"]
+
+[ext_resource type="Texture2D" uid="uid://cspfcme5mn6p3" path="res://textures/characters/mutant zwinny.png" id="1_gqjyr"]
+[ext_resource type="Texture2D" uid="uid://coap8osrtpssp" path="res://textures/characters/mutant-zwinny reference.png" id="1_k85q8"]
+
+[node name="Mutant" type="Node2D"]
+
+[node name="Poligons" type="Node2D" parent="."]
+
+[node name="Torso" type="Polygon2D" parent="Poligons"]
+position = Vector2(168, -376)
+texture = ExtResource("1_gqjyr")
+polygon = PackedVector2Array(68, 350, 55, 438, 56, 516, 35, 540, 25, 620, 72, 690, 178, 691, 325, 687, 385, 674, 410, 640, 424, 540, 420, 469, 384, 366, 276, 358, 190, 355, 99, 348)
+uv = PackedVector2Array(71, 355, 55, 438, 56, 516, 35, 540, 25, 620, 72, 690, 178, 691, 325, 687, 385, 674, 410, 640, 424, 540, 420, 469, 384, 366, 262, 360, 150, 355, 76, 347)
+
+[node name="TighL" type="Polygon2D" parent="Poligons"]
+position = Vector2(-402, 171)
+texture = ExtResource("1_gqjyr")
+polygon = PackedVector2Array(785.87, 114.13, 771.739, 196.739, 782.609, 265.217, 818.478, 327.174, 888.043, 335.87, 941.304, 336.957, 965.217, 311.957, 981.522, 253.261, 977.174, 198.913, 967.391, 147.826, 967.391, 110.87, 888.043, 92.3913, 817.391, 93.4783)
+uv = PackedVector2Array(785.87, 114.13, 771.739, 196.739, 782.609, 265.217, 818.478, 327.174, 888.043, 335.87, 941.304, 336.957, 965.217, 311.957, 981.522, 253.261, 977.174, 198.913, 967.391, 147.826, 967.391, 110.87, 888.043, 92.3913, 817.391, 93.4783)
+
+[node name="CalfL" type="Polygon2D" parent="Poligons"]
+position = Vector2(-399, 110)
+texture = ExtResource("1_gqjyr")
+polygon = PackedVector2Array(844.565, 373.913, 823.913, 459.783, 844.565, 519.565, 852.174, 558.696, 890.217, 569.565, 934.783, 571.739, 952.174, 532.609, 966.304, 482.609, 963.043, 440.217, 942.391, 372.826, 889.13, 369.565)
+uv = PackedVector2Array(850, 372.826, 821.739, 463.043, 844.565, 519.565, 852.174, 558.696, 890.217, 569.565, 934.783, 571.739, 952.174, 532.609, 966.304, 482.609, 963.043, 440.217, 942.391, 372.826, 889.13, 369.565)
+
+[node name="FootL" type="Polygon2D" parent="Poligons"]
+position = Vector2(-398, 31)
+texture = ExtResource("1_gqjyr")
+polygon = PackedVector2Array(853.704, 617.901, 845.679, 635.802, 847.531, 658.642, 857.407, 670.37, 872.222, 681.482, 893.827, 686.42, 913.58, 695.679, 947.531, 696.914, 972.222, 688.889, 984.568, 670.988, 973.457, 661.728, 948.148, 645.679, 930.864, 622.84, 901.235, 615.432, 872.222, 612.346)
+uv = PackedVector2Array(853.704, 617.901, 845.679, 635.802, 847.531, 658.642, 857.407, 670.37, 872.222, 681.482, 893.827, 686.42, 913.58, 695.679, 947.531, 696.914, 972.222, 688.889, 984.568, 670.988, 973.457, 661.728, 948.148, 645.679, 930.864, 622.84, 901.235, 615.432, 872.222, 612.346)
+
+[node name="Mutant-zwinnyReference" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.454902)
+position = Vector2(430, 249)
+texture = ExtResource("1_k85q8")
+metadata/_edit_lock_ = true

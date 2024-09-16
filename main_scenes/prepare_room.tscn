@@ -1,0 +1,388 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnxxv2ejsvy8j"]
+
+[ext_resource type="Script" path="res://scripts/PlayerManager.cs" id="1_maoha"]
+[ext_resource type="PackedScene" uid="uid://db4xkimbtg75" path="res://main_scenes/game_break.tscn" id="2_drfy8"]
+[ext_resource type="Script" path="res://scripts/prepare_room/PlayerPanel.cs" id="3_cftrk"]
+
+[node name="prepare_room" type="Control" node_paths=PackedStringArray("panels")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_maoha")
+game = ExtResource("2_drfy8")
+panels = [NodePath("PlayerPanel 1"), NodePath("PlayerPanel 2"), NodePath("PlayerPanel 3"), NodePath("PlayerPanel 4"), NodePath("PlayerPanel 5"), NodePath("PlayerPanel 6")]
+
+[node name="PlayerPanel 1" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0199653
+anchor_top = 0.029321
+anchor_right = 0.280382
+anchor_bottom = 0.316358
+script = ExtResource("3_cftrk")
+id = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 1/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 1/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]keyboard[/center]"
+scroll_active = false
+
+[node name="PlayerPanel 2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30816
+anchor_top = 0.0401235
+anchor_right = 0.568576
+anchor_bottom = 0.327161
+script = ExtResource("3_cftrk")
+id = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 2/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 2/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "keyboard
+"
+scroll_active = false
+
+[node name="PlayerPanel 3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0217014
+anchor_top = 0.351852
+anchor_right = 0.282118
+anchor_bottom = 0.638889
+script = ExtResource("3_cftrk")
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 3/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 3/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "gamepad"
+scroll_active = false
+
+[node name="PlayerPanel 4" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.303819
+anchor_top = 0.353395
+anchor_right = 0.564236
+anchor_bottom = 0.640432
+script = ExtResource("3_cftrk")
+id = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 4/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 4/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "gamepad"
+scroll_active = false
+
+[node name="PlayerPanel 5" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0208333
+anchor_top = 0.671296
+anchor_right = 0.28125
+anchor_bottom = 0.958333
+script = ExtResource("3_cftrk")
+id = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 5/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 5/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "gamepad"
+scroll_active = false
+
+[node name="PlayerPanel 6" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.309028
+anchor_top = 0.674383
+anchor_right = 0.569444
+anchor_bottom = 0.96142
+script = ExtResource("3_cftrk")
+id = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="enabled" type="Control" parent="PlayerPanel 6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 6/enabled"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -40.0
+offset_right = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]READY[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="disabled" type="Control" parent="PlayerPanel 6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 6/disabled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -22.5
+offset_right = 70.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "gamepad"
+scroll_active = false
