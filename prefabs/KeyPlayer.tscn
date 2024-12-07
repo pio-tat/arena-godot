@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://djbchm6aecc8p"]
+[gd_scene load_steps=13 format=3 uid="uid://djbchm6aecc8p"]
 
 [ext_resource type="Script" path="res://scripts/arena/player/KeyboardMovement.cs" id="1_wcw80"]
-[ext_resource type="Script" path="res://scripts/arena/player/PlayerStats.cs" id="2_2rcbk"]
+[ext_resource type="PackedScene" uid="uid://2tdc4duqpsgb" path="res://prefabs/attack_info.tscn" id="2_5quki"]
+[ext_resource type="Resource" uid="uid://co22bhj50rbya" path="res://resources/Barry.tres" id="2_rk4r7"]
+[ext_resource type="PackedScene" uid="uid://lqsxvk4ocbtj" path="res://prefabs/health_component.tscn" id="3_6pf2o"]
 [ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_eosjl"]
+[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://Barry.svg" id="3_fgi3d"]
 [ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_0gmlf"]
+[ext_resource type="PackedScene" uid="uid://dmtl0j7w5djfs" path="res://prefabs/hurtbox.tscn" id="4_lugob"]
 [ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_h1uln"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwg"]
-size = Vector2(18, 42)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqrtd"]
 bg_color = Color(0.298039, 0.298039, 0.298039, 1)
@@ -26,18 +27,41 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("firePoint")]
-collision_layer = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwg"]
+size = Vector2(18, 42)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("firePoint") groups=["player"]]
+collision_layer = 10
 script = ExtResource("1_wcw80")
+characterProperties = ExtResource("2_rk4r7")
 firePoint = NodePath("FirePoint")
 
-[node name="PlayerStats" type="Node2D" parent="."]
-script = ExtResource("2_2rcbk")
+[node name="AttackInfo" parent="." instance=ExtResource("2_5quki")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.38419e-07, -1.90735e-06)
-scale = Vector2(0.140625, 0.328125)
-texture = ExtResource("3_eosjl")
+[node name="HealthComponent" parent="." instance=ExtResource("3_6pf2o")]
+maxHealth = 10
+
+[node name="HealthBar" type="ProgressBar" parent="HealthComponent"]
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 16.0
+offset_bottom = -24.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hqrtd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cnej3")
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_lugob")]
+healthComponent = NodePath("../HealthComponent")
+
+[node name="Collider" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_oanwg")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.642857, 0.646154)
+texture = ExtResource("3_fgi3d")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oanwg")
@@ -51,13 +75,4 @@ bulletScn = ExtResource("5_h1uln")
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("3_eosjl")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -16.0
-offset_top = -28.0
-offset_right = 16.0
-offset_bottom = -24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_hqrtd")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cnej3")
-value = 50.0
-rounded = true
-show_percentage = false
+[connection signal="Death" from="HealthComponent" to="." method="OnDeath"]

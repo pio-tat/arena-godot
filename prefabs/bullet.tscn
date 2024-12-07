@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1u82x1ic2xoj"]
+[gd_scene load_steps=5 format=3 uid="uid://b1u82x1ic2xoj"]
 
 [ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="1_4huyd"]
 [ext_resource type="Script" path="res://scripts/arena/player/Bullet.cs" id="1_uiq27"]
+[ext_resource type="PackedScene" uid="uid://bx0ifd21lnk70" path="res://prefabs/hitbox.tscn" id="3_r1m2w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_317gj"]
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="DynamicAttack" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -15,8 +16,9 @@ script = ExtResource("1_uiq27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_317gj")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("1_4huyd")
 
@@ -25,4 +27,11 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="Hitbox" parent="." instance=ExtResource("3_r1m2w")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_317gj")
+debug_color = Color(1, 0, 0.129412, 0.419608)
+
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="Hit" from="Hitbox" to="." method="OnHit"]

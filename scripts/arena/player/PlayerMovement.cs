@@ -1,7 +1,9 @@
 using Godot;
 using System;
 
-public partial class PlayerMovement : CharacterBody2D, IHurtBox, IPlayer
+//TO NIE DZIAŁA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//ZRÓB TO JAK SKOŃCZYSZ KEYBOARDOWY
+public partial class PlayerMovement : CharacterBody2D //, IPlayer
 {
 	public int PlayerId {get => playerId; set {playerId = value;}}
 	[Export] int playerId;
@@ -12,9 +14,6 @@ public partial class PlayerMovement : CharacterBody2D, IHurtBox, IPlayer
 	CollisionShape2D collider;
 	[Export] Attack firePoint;
 
-	public PlayerStats PlayerStats {get => playerStats;}
-	PlayerStats playerStats;
-
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	// Called when the node enters the scene tree for the first time.
@@ -22,7 +21,6 @@ public partial class PlayerMovement : CharacterBody2D, IHurtBox, IPlayer
 	{
 		device = playerId - 2;
 		collider = GetNode<CollisionShape2D>("Collider");
-		playerStats = GetNode<PlayerStats>("PlayerStats");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,10 +52,5 @@ public partial class PlayerMovement : CharacterBody2D, IHurtBox, IPlayer
 
 		Velocity = velocity;
 		MoveAndSlide();
-	}
-
-	public void OnHit(int damage)
-	{
-		playerStats.Damage(damage);
 	}
 }

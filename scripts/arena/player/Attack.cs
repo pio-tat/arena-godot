@@ -3,27 +3,27 @@ using System;
 
 public partial class Attack : Node2D
 {
+	#region variables
+	AttackInfo attackInfo;
 	[Export] PackedScene bulletScn;
 	public float bulletSpeed = 600f;
 	public float bps = 5; //bullets per second
-	public float damage = 30f;
 
 	// PlayerMovement player;
-	PlayerStats stats;
 	IPlayer player;
 
 	//fancy calculations
 	float fireRate;
 	float timeUntilFire = 0;
 	float pos = 15f;
+	#endregion
 
     public override void _Ready()
     {
 		//getting player script
 		var parent = GetParent();
 		player = parent as IPlayer;
-
-		stats = parent.GetChild<PlayerStats>(0);
+		attackInfo = GetParent().GetNode<AttackInfo>("AttackInfo");
 		
         fireRate = 1 / bps;
     }
@@ -49,6 +49,7 @@ public partial class Attack : Node2D
 		bullet.Position = GlobalPosition;
 		bullet.LinearVelocity = bullet.Transform.X * bulletSpeed;
 		(bullet as Bullet).playerId = player.PlayerId; //setting up playerId so bullet can recognise if he hitted enemy or player who summoned it 
+		(bullet as Bullet).attackInfo = attackInfo;
 
 		GetTree().CurrentScene.AddChild(bullet); //adding bullet to world
 	}

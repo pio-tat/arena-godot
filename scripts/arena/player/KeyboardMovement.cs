@@ -1,30 +1,36 @@
 using Godot;
 using System;
 
-public partial class KeyboardMovement : CharacterBody2D, IHurtBox, IPlayer
+public partial class KeyboardMovement : CharacterBody2D, IPlayer
 {
+	#region variables
+	[Export] CharacterResource characterProperties;
+	public CharacterResource CharacterProperties {get => characterProperties; set => characterProperties = value;}
 	//Ids
 	public int PlayerId {get => playerId; set {playerId = value;}}
-	int playerId;
+	[Export] int playerId;
     string keyboardId;
 
 	[Export] float moveSpeed = 150f;
 	[Export] float jumpVelocity = 400f;
 	CollisionShape2D collider;
-	[Export] Attack firePoint;
+    private ArenaManager arenaManager;
+    [Export] Attack firePoint;
 
-	//Player stats
-	public PlayerStats PlayerStats {get => playerStats;}
-	PlayerStats playerStats;
 
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+	#endregion
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         keyboardId = (playerId + 1).ToString();
 		collider = GetNode<CollisionShape2D>("Collider");
-		playerStats = GetNode<PlayerStats>("PlayerStats");
+
+		arenaManager = GetParent() as ArenaManager;
+
+		SetUpCharacter();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,9 +67,24 @@ public partial class KeyboardMovement : CharacterBody2D, IHurtBox, IPlayer
 		MoveAndSlide();
 	}
 
-	//things that happen when hitted by bullet or something like that
-	public void OnHit(int damage)
+	//things that happen on death
+	public void OnDeath()
 	{
-		playerStats.Damage(damage);
+		arenaManager.RemovePlayerFromCamera(this);
+		QueueFree();
+	}
+
+	void SetUpCharacter()
+	{
+		moveSpeed = characterProperties.MoveSpeed;
+		jumpVelocity = characterProperties.JumpVelocity;
+
+		GetNode<HealthComponent>("HealthComponent").maxHealth = characterProperties.Health;
+		GetNode<AttackInfo>("AttackInfo").attackResource = characterProperties.AttackProperties;
+
+		firePoint.bps = characterProperties.AttackProperties.AttacksPerSecond;
+		firePoint.bulletSpeed = characterProperties.AttackProperties.BulletSpeed;
+
+		GetNode<Sprite2D>("Sprite").Texture = characterProperties.Texture;
 	}
 }

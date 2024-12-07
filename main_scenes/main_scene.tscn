@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtmw8nrniwmqd"]
+[gd_scene load_steps=8 format=3 uid="uid://dtmw8nrniwmqd"]
 
 [ext_resource type="Script" path="res://scripts/ArenaManager.cs" id="1_k51q0"]
 [ext_resource type="PackedScene" uid="uid://chiymwhh7psie" path="res://prefabs/Player.tscn" id="2_oblso"]
 [ext_resource type="PackedScene" uid="uid://djbchm6aecc8p" path="res://prefabs/KeyPlayer.tscn" id="3_ogfm3"]
 [ext_resource type="TileSet" uid="uid://dgnridxphjyns" path="res://Placeholder.tres" id="4_edv5u"]
 [ext_resource type="Script" path="res://scripts/arena/CameraLogic.cs" id="5_t6swq"]
+[ext_resource type="PackedScene" uid="uid://bx0ifd21lnk70" path="res://prefabs/hitbox.tscn" id="6_tehrl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_seq1q"]
 
 [node name="Main Scene" type="Node2D" node_paths=PackedStringArray("mainCamera", "gamemodes")]
 script = ExtResource("1_k51q0")
@@ -42,3 +45,10 @@ position = Vector2(-244, -539)
 
 [node name="Spawnpoint5" type="Node2D" parent="Gamemode 1/Map1"]
 position = Vector2(205, -502)
+
+[node name="WorldEdge" parent="." instance=ExtResource("6_tehrl")]
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEdge"]
+position = Vector2(9, 321)
+shape = SubResource("WorldBoundaryShape2D_seq1q")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx0ifd21lnk70"]
+
+[ext_resource type="Script" path="res://scripts/arena/Hitbox.cs" id="1_iksyr"]
+
+[node name="Hitbox" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_iksyr")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

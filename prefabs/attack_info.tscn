@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2tdc4duqpsgb"]
+
+[ext_resource type="Script" path="res://scripts/arena/player/AttackInfo.cs" id="1_bvcoc"]
+
+[node name="AttackInfo" type="Node2D"]
+script = ExtResource("1_bvcoc")
