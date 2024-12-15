@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=6 format=3 uid="uid://cbeirdpe272r4"]
+
+[ext_resource type="Script" path="res://resources/CharacterResource.cs" id="1_pmsdk"]
+[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="1_y7eyp"]
+[ext_resource type="Script" path="res://resources/AttackResource.cs" id="2_vfhss"]
+[ext_resource type="Texture2D" uid="uid://4ox4m8vt5cmp" path="res://textures/characters/devil.svg" id="4_twkq6"]
+
+[sub_resource type="Resource" id="Resource_0c0i7"]
+script = ExtResource("2_vfhss")
+damage = 350
+attacksPerSecond = 1.0
+attackDuration = 1.5
+attackType = 0
+bulletSpeed = 550.0
+effects = []
+attackTexture = ExtResource("1_y7eyp")
+
+[resource]
+script = ExtResource("1_pmsdk")
+character = ""
+attackProperties = SubResource("Resource_0c0i7")
+health = 1000
+moveSpeed = 150.0
+jumpVelocity = 400.0
+doubleJump = false
+texture = ExtResource("4_twkq6")
+description = ""

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cspfcme5mn6p3"
-path="res://.godot/imported/mutant zwinny.png-fc5a5219671c19fc77ad68edc9fc4e07.ctex"
+uid="uid://0nqqinw86vwk"
+path="res://.godot/imported/Bux.svg-deb067864d8978d80f5e5d7bc044da97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/mutant zwinny.png"
-dest_files=["res://.godot/imported/mutant zwinny.png-fc5a5219671c19fc77ad68edc9fc4e07.ctex"]
+source_file="res://textures/characters/Bux.svg"
+dest_files=["res://.godot/imported/Bux.svg-deb067864d8978d80f5e5d7bc044da97.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

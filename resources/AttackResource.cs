@@ -25,8 +25,8 @@ public partial class AttackResource : Resource
             // throw new Exception("Can't get the bullet speed of attack type Melee");
         }
     }
-    [Export] Godot.Collections.Array<Effects> effects = new();
-    public Godot.Collections.Array<Effects> Effects {get => effects;}
+    [Export] Godot.Collections.Array<EffectProperties> effects = new();
+    public Godot.Collections.Array<EffectProperties> Effects {get => effects;}
 
     public enum AttackTypeEnum
     {

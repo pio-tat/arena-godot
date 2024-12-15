@@ -4,8 +4,8 @@ using System;
 [GlobalClass]
 public partial class CharacterResource : Resource
 {
-    [Export] CharacterEnum character;
-    public CharacterEnum Character {get => character;}
+    [Export] string character;
+    public string Character {get => character;}
 
     [Export] AttackResource attackProperties;
     public AttackResource AttackProperties {get => attackProperties;}
@@ -15,6 +15,8 @@ public partial class CharacterResource : Resource
     public float MoveSpeed {get => moveSpeed;}
     [Export] float jumpVelocity;
     public float JumpVelocity {get => jumpVelocity;}
+    [Export] bool doubleJump = false;
+    public bool DoubleJump {get => doubleJump;}
 
 
     [Export] Texture2D texture;

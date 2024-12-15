@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coap8osrtpssp"
-path="res://.godot/imported/mutant-zwinny reference.png-b68b5a900db776c98e8e122d727bd6de.ctex"
+uid="uid://4ox4m8vt5cmp"
+path="res://.godot/imported/devil.svg-ccabd48b001e3b21e68a3d708085ec6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/mutant-zwinny reference.png"
-dest_files=["res://.godot/imported/mutant-zwinny reference.png-b68b5a900db776c98e8e122d727bd6de.ctex"]
+source_file="res://textures/characters/devil.svg"
+dest_files=["res://.godot/imported/devil.svg-ccabd48b001e3b21e68a3d708085ec6e.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

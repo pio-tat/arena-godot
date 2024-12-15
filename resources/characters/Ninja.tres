@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=6 format=3 uid="uid://c07axm4swhpaa"]
+
+[ext_resource type="Script" path="res://resources/CharacterResource.cs" id="1_a6ouv"]
+[ext_resource type="Script" path="res://resources/AttackResource.cs" id="1_g44pi"]
+[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="1_jth4a"]
+[ext_resource type="Texture2D" uid="uid://uxgs858y2rxn" path="res://textures/characters/ninja.svg" id="4_edvfb"]
+
+[sub_resource type="Resource" id="Resource_a1fac"]
+script = ExtResource("1_g44pi")
+damage = 100
+attacksPerSecond = 4.0
+attackDuration = 0.3
+attackType = 0
+bulletSpeed = 800.0
+effects = []
+attackTexture = ExtResource("1_jth4a")
+
+[resource]
+script = ExtResource("1_a6ouv")
+character = ""
+attackProperties = SubResource("Resource_a1fac")
+health = 600
+moveSpeed = 200.0
+jumpVelocity = 400.0
+doubleJump = true
+texture = ExtResource("4_edvfb")
+description = ""

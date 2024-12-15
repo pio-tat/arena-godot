@@ -20,6 +20,7 @@ public partial class Bullet : RigidBody2D
 		hitbox.attackInfo = attackInfo;
 
 		GetNode<Sprite2D>("Sprite").Texture = attackInfo.attackResource.AttackTexture;
+		timer.Start();
     }
 
 	public void OnBodyEntered(Node2D hitInfo)

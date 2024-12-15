@@ -13,6 +13,9 @@ public partial class KeyboardMovement : CharacterBody2D, IPlayer
 
 	[Export] float moveSpeed = 150f;
 	[Export] float jumpVelocity = 400f;
+	bool doubleJump = false;
+	int jumps = 0;
+
 	CollisionShape2D collider;
     private ArenaManager arenaManager;
     [Export] Attack firePoint;
@@ -41,11 +44,15 @@ public partial class KeyboardMovement : CharacterBody2D, IPlayer
 		//when isn't on the floor makes gravity work
 		if(!IsOnFloor()){
 			velocity.Y += gravity * (float)delta;
+			if(jumps == 0) jumps = 1;
+		}else{
+			jumps = 0;
 		}
 
 		//inputs for jumping and going down
-		if(Input.IsActionJustPressed("up" + keyboardId) && IsOnFloor()){
+		if(Input.IsActionJustPressed("up" + keyboardId) && (IsOnFloor() || jumps < 2 && doubleJump)){
 			velocity.Y = -jumpVelocity;
+			jumps += 1;
 		}
 		if(Input.IsActionJustPressed("down" + keyboardId) && IsOnFloor())
 			Position = new Vector2(Position.X, Position.Y + 1);
@@ -78,8 +85,10 @@ public partial class KeyboardMovement : CharacterBody2D, IPlayer
 	{
 		moveSpeed = characterProperties.MoveSpeed;
 		jumpVelocity = characterProperties.JumpVelocity;
+		doubleJump = characterProperties.DoubleJump;
 
-		GetNode<HealthComponent>("HealthComponent").maxHealth = characterProperties.Health;
+		GetNode<HealthComponent>("HealthComponent").SetUpHealth(characterProperties.Health);
+
 		GetNode<AttackInfo>("AttackInfo").attackResource = characterProperties.AttackProperties;
 
 		firePoint.bps = characterProperties.AttackProperties.AttacksPerSecond;

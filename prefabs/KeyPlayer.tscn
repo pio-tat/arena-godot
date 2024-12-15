@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/arena/player/KeyboardMovement.cs" id="1_wcw80"]
 [ext_resource type="PackedScene" uid="uid://2tdc4duqpsgb" path="res://prefabs/attack_info.tscn" id="2_5quki"]
-[ext_resource type="Resource" uid="uid://co22bhj50rbya" path="res://resources/Barry.tres" id="2_rk4r7"]
+[ext_resource type="Resource" uid="uid://c07axm4swhpaa" path="res://resources/characters/Ninja.tres" id="2_24hw5"]
 [ext_resource type="PackedScene" uid="uid://lqsxvk4ocbtj" path="res://prefabs/health_component.tscn" id="3_6pf2o"]
 [ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_eosjl"]
 [ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://Barry.svg" id="3_fgi3d"]
@@ -33,7 +33,7 @@ size = Vector2(18, 42)
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("firePoint") groups=["player"]]
 collision_layer = 10
 script = ExtResource("1_wcw80")
-characterProperties = ExtResource("2_rk4r7")
+characterProperties = ExtResource("2_24hw5")
 firePoint = NodePath("FirePoint")
 
 [node name="AttackInfo" parent="." instance=ExtResource("2_5quki")]

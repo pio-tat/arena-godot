@@ -15,11 +15,3 @@ public partial class AttackInfo : Node2D
         playerId = GetParent<IPlayer>().PlayerId;
     }
 }
-
-public enum Effects
-{
-	none = 0,
-	poison,
-	slowness,
-	weakness
-}

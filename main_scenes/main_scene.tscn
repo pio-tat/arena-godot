@@ -47,7 +47,7 @@ position = Vector2(-244, -539)
 position = Vector2(205, -502)
 
 [node name="WorldEdge" parent="." instance=ExtResource("6_tehrl")]
-damage = 100
+damage = 999999999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEdge"]
 position = Vector2(9, 321)
