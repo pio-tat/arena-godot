@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://du8v046t7v5wb"]
+[gd_scene load_steps=4 format=3 uid="uid://du8v046t7v5wb"]
 
 [ext_resource type="Script" path="res://scripts/main_menu/MainMenu.cs" id="1_paxbm"]
 [ext_resource type="PackedScene" uid="uid://cnxxv2ejsvy8j" path="res://main_scenes/prepare_room.tscn" id="2_7h2qa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q425s"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -13,35 +15,37 @@ grow_vertical = 2
 script = ExtResource("1_paxbm")
 mainGameScene = ExtResource("2_7h2qa")
 
-[node name="Play Button" type="Button" parent="."]
+[node name="ButtonMenu" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = 28.0
-offset_right = 99.0
-offset_bottom = 100.0
+anchor_bottom = 1.0
+offset_left = -157.0
+offset_top = -306.0
+offset_right = 157.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q425s")
+
+[node name="MarginContainer" type="MarginContainer" parent="ButtonMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Play Button" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
 text = "Play"
 
-[node name="Quit Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = 188.0
-offset_right = 99.0
-offset_bottom = 260.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Quit Button" type="Button" parent="ButtonMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="Play Button" to="." method="OnPlayButtonPressed"]
-[connection signal="pressed" from="Quit Button" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Play Button" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="ButtonMenu/MarginContainer/VBoxContainer/Quit Button" to="." method="OnQuitButtonPressed"]

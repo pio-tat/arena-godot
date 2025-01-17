@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnxxv2ejsvy8j"]
+[gd_scene load_steps=5 format=3 uid="uid://cnxxv2ejsvy8j"]
 
 [ext_resource type="Script" path="res://scripts/PlayerManager.cs" id="1_maoha"]
 [ext_resource type="PackedScene" uid="uid://db4xkimbtg75" path="res://main_scenes/game_break.tscn" id="2_drfy8"]
 [ext_resource type="Script" path="res://scripts/prepare_room/PlayerPanel.cs" id="3_cftrk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50g8r"]
 
 [node name="prepare_room" type="Control" node_paths=PackedStringArray("panels")]
 layout_mode = 3
@@ -13,20 +15,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_maoha")
 game = ExtResource("2_drfy8")
-panels = [NodePath("PlayerPanel 1"), NodePath("PlayerPanel 2"), NodePath("PlayerPanel 3"), NodePath("PlayerPanel 4"), NodePath("PlayerPanel 5"), NodePath("PlayerPanel 6")]
+panels = [NodePath("PanelContainer/GridContainer/PlayerPanel 1"), NodePath("PanelContainer/GridContainer/PlayerPanel 2"), NodePath("PanelContainer/GridContainer/PlayerPanel 3"), NodePath("PanelContainer/GridContainer/PlayerPanel 4"), NodePath("PanelContainer/GridContainer/PlayerPanel 5"), NodePath("PanelContainer/GridContainer/PlayerPanel 6")]
 
-[node name="PlayerPanel 1" type="Panel" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0199653
-anchor_top = 0.029321
-anchor_right = 0.280382
-anchor_bottom = 0.316358
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_50g8r")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 32
+columns = 2
+
+[node name="PlayerPanel 1" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 id = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 1"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 1/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 1/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -51,7 +65,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 1"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 1/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 1/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -77,18 +91,15 @@ bbcode_enabled = true
 text = "[center]keyboard[/center]"
 scroll_active = false
 
-[node name="PlayerPanel 2" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.30816
-anchor_top = 0.0401235
-anchor_right = 0.568576
-anchor_bottom = 0.327161
+[node name="PlayerPanel 2" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 id = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 2"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +107,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 2/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 2/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -113,7 +124,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 2"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,7 +132,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 2/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 2/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -140,17 +151,14 @@ text = "keyboard
 "
 scroll_active = false
 
-[node name="PlayerPanel 3" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0217014
-anchor_top = 0.351852
-anchor_right = 0.282118
-anchor_bottom = 0.638889
+[node name="PlayerPanel 3" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 3"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -158,7 +166,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 3/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 3/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -175,7 +183,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 3"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,7 +191,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 3/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 3/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -201,18 +209,15 @@ bbcode_enabled = true
 text = "gamepad"
 scroll_active = false
 
-[node name="PlayerPanel 4" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.303819
-anchor_top = 0.353395
-anchor_right = 0.564236
-anchor_bottom = 0.640432
+[node name="PlayerPanel 4" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 id = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 4"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,7 +225,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 4/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 4/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -237,7 +242,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 4"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,7 +250,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 4/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 4/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -263,18 +268,15 @@ bbcode_enabled = true
 text = "gamepad"
 scroll_active = false
 
-[node name="PlayerPanel 5" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0208333
-anchor_top = 0.671296
-anchor_right = 0.28125
-anchor_bottom = 0.958333
+[node name="PlayerPanel 5" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 id = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 5"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,7 +284,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 5/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 5/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -299,7 +301,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 5"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -307,7 +309,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 5/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 5/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -325,18 +327,15 @@ bbcode_enabled = true
 text = "gamepad"
 scroll_active = false
 
-[node name="PlayerPanel 6" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.309028
-anchor_top = 0.674383
-anchor_right = 0.569444
-anchor_bottom = 0.96142
+[node name="PlayerPanel 6" type="Panel" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_cftrk")
 id = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="enabled" type="Control" parent="PlayerPanel 6"]
+[node name="enabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 6"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -344,7 +343,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 6/enabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 6/enabled"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -361,7 +360,7 @@ text = "[center]READY[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="disabled" type="Control" parent="PlayerPanel 6"]
+[node name="disabled" type="Control" parent="PanelContainer/GridContainer/PlayerPanel 6"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -369,7 +368,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerPanel 6/disabled"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/GridContainer/PlayerPanel 6/disabled"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

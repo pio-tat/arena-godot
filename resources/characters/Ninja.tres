@@ -17,7 +17,7 @@ attackTexture = ExtResource("1_jth4a")
 
 [resource]
 script = ExtResource("1_a6ouv")
-character = ""
+character = 3
 attackProperties = SubResource("Resource_a1fac")
 health = 600
 moveSpeed = 200.0

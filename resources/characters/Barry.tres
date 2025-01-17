@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="1_8eiuu"]
 [ext_resource type="Script" path="res://resources/AttackResource.cs" id="2_yvgo0"]
 [ext_resource type="Script" path="res://resources/CharacterResource.cs" id="3_plv5j"]
-[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://Barry.svg" id="4_nfo3k"]
+[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://textures/characters/Barry.svg" id="4_nfo3k"]
 
 [sub_resource type="Resource" id="Resource_rxqa2"]
 script = ExtResource("2_yvgo0")

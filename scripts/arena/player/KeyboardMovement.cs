@@ -4,7 +4,7 @@ using System;
 public partial class KeyboardMovement : CharacterBody2D, IPlayer
 {
 	#region variables
-	[Export] CharacterResource characterProperties;
+	CharacterResource characterProperties;
 	public CharacterResource CharacterProperties {get => characterProperties; set => characterProperties = value;}
 	//Ids
 	public int PlayerId {get => playerId; set {playerId = value;}}

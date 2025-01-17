@@ -17,7 +17,7 @@ public partial class PlayerPanel : Panel
 	{
 		enabled = GetChild<Control>(0);
 		disabled = GetChild<Control>(1);
-		manager = GetParent<PlayerManager>();
+		manager = GetTree().CurrentScene as PlayerManager;
 		device = id - 2;
 	}
     public override void _Process(double delta)

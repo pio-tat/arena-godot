@@ -4,8 +4,8 @@ using System;
 [GlobalClass]
 public partial class CharacterResource : Resource
 {
-    [Export] string character;
-    public string Character {get => character;}
+    [Export] CharacterEnum character;
+    public CharacterEnum Character {get => character;}
 
     [Export] AttackResource attackProperties;
     public AttackResource AttackProperties {get => attackProperties;}

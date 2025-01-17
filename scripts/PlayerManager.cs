@@ -113,8 +113,15 @@ public class Player
 	public Node playerNode;
 	public string name;
 
+	public List<CharacterEnum> charactersUnlocked = new();
+	public CharacterEnum currentCharacter = CharacterEnum.Barry;
+
 	public Player(int id)
 	{
 		this.id = id;
+		charactersUnlocked.Add(CharacterEnum.Barry);
+		charactersUnlocked.Add(CharacterEnum.Devil);
+		charactersUnlocked.Add(CharacterEnum.Ninja);
+		name = "player"+(id+1);
 	}
 }

@@ -54,6 +54,7 @@ public partial class ArenaManager : Node2D
 			else
 				playerInfo = padPlayerScn.Instantiate() as IPlayer;
 			playerInfo.PlayerId = player.Id;
+			playerInfo.CharacterProperties = CharactersStorage.GetCharacter(player.currentCharacter);
 			(playerInfo as Node2D).Position = spawnPoint.Position;
 			GetTree().CurrentScene.AddChild(playerInfo as Node);
 

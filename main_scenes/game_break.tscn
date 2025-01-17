@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://db4xkimbtg75"]
+[gd_scene load_steps=6 format=3 uid="uid://db4xkimbtg75"]
 
 [ext_resource type="Script" path="res://scripts/Break.cs" id="1_l6mol"]
 [ext_resource type="PackedScene" uid="uid://dtmw8nrniwmqd" path="res://main_scenes/main_scene.tscn" id="2_yuj5c"]
 [ext_resource type="PackedScene" uid="uid://bakos1driyw8l" path="res://prefabs/ui prefabs/playerModeChooser.tscn" id="3_bl187"]
 [ext_resource type="Script" path="res://scripts/game_break/TimeCounter.cs" id="4_hm2tw"]
+[ext_resource type="PackedScene" uid="uid://i1wgx823qvg3" path="res://prefabs/ui prefabs/playerSpace.tscn" id="5_b5jyt"]
 
 [node name="game_break" type="Control" node_paths=PackedStringArray("modeSelect", "gmPanels", "timeCounter")]
 layout_mode = 3
@@ -20,6 +21,7 @@ gmPanels = [NodePath("GamemodeSelection/Gamemode"), NodePath("GamemodeSelection/
 timeCounter = NodePath("GamemodeSelection/TimeCounter")
 
 [node name="GamemodeSelection" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +39,7 @@ offset_right = 327.0
 offset_bottom = 81.5
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GamemodeSelection/Gamemode"]
+[node name="text" type="RichTextLabel" parent="GamemodeSelection/Gamemode"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,7 +70,7 @@ offset_bottom = 81.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GamemodeSelection/Gamemode2"]
+[node name="text" type="RichTextLabel" parent="GamemodeSelection/Gamemode2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -98,7 +100,7 @@ offset_bottom = 81.5
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GamemodeSelection/Gamemode3"]
+[node name="text" type="RichTextLabel" parent="GamemodeSelection/Gamemode3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -131,6 +133,33 @@ script = ExtResource("4_hm2tw")
 
 [node name="Timer" type="Timer" parent="GamemodeSelection/TimeCounter"]
 autostart = true
+
+[node name="CharacterSelection" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="playerSpace" parent="CharacterSelection" instance=ExtResource("5_b5jyt")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+offset_left = 0.511963
+grow_horizontal = 0
+size_flags_horizontal = 8
+
+[node name="playerSpace2" parent="CharacterSelection" instance=ExtResource("5_b5jyt")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+offset_right = 0.0639648
+offset_bottom = -6.10352e-05
+grow_horizontal = 1
+size_flags_horizontal = 0
+id = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="Time" from="GamemodeSelection/TimeCounter" to="." method="SelectMode"]
 [connection signal="timeout" from="GamemodeSelection/TimeCounter/Timer" to="GamemodeSelection/TimeCounter" method="ChangeText"]

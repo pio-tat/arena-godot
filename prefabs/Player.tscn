@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/arena/player/PlayerMovement.cs" id="1_lrrhb"]
 [ext_resource type="Script" path="res://scripts/arena/player/PlayerStats.cs" id="2_4bpye"]
-[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://Barry.svg" id="3_6tn0r"]
+[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://textures/characters/Barry.svg" id="3_6tn0r"]
 [ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_jr3w3"]
 [ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_hesgw"]
 [ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_c77wt"]

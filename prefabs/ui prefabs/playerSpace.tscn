@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://i1wgx823qvg3"]
+
+[ext_resource type="Script" path="res://scripts/game_break/PlayerSpace.cs" id="1_5mxhc"]
+[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://textures/characters/Barry.svg" id="1_kdcy1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgn5u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pg2bv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lqgtp"]
+font_size = 45
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rgajm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arfog"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1yhc"]
+
+[node name="playerSpace" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kgn5u")
+script = ExtResource("1_5mxhc")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="labelCont" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pg2bv")
+
+[node name="player name" type="Label" parent="VBox/labelCont"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "player"
+label_settings = SubResource("LabelSettings_lqgtp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rgajm")
+
+[node name="textureCont" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_arfog")
+
+[node name="selectedCharacter" type="TextureRect" parent="VBox/textureCont"]
+layout_mode = 2
+texture = ExtResource("1_kdcy1")
+stretch_mode = 5
+
+[node name="HSeparator2" type="HSeparator" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o1yhc")

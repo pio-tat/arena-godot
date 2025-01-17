@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd5xshea4t774"
-path="res://.godot/imported/Barry.svg-b84b73a669d514759c677da166b001ea.ctex"
+path="res://.godot/imported/Barry.svg-82ce9f5068f182a298acb1b4bc42cd53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Barry.svg"
-dest_files=["res://.godot/imported/Barry.svg-b84b73a669d514759c677da166b001ea.ctex"]
+source_file="res://textures/characters/Barry.svg"
+dest_files=["res://.godot/imported/Barry.svg-82ce9f5068f182a298acb1b4bc42cd53.ctex"]
 
 [params]
 

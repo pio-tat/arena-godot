@@ -6,15 +6,26 @@ using System.Linq;
 
 public partial class Break : Control
 {
+	#region VARIABLES
 	[Export] PackedScene gameScene;
+	#region ModeSelection
 	[Export] Control modeSelect;
 	[Export] PackedScene playerSelScn;
 	GameModes[] gameModes = new GameModes[3];
 	[Export] Panel[] gmPanels;
 	[Export] TimeCounter timeCounter;
+	#endregion
+	#region CharacterSelection
+	Control characterSelectionNode;
+	#endregion
+	#endregion
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		characterSelectionNode = GetNode<Control>("CharacterSelection");
+		characterSelectionNode.Visible = true;
+
 		timeCounter.OnTimeOut += SelectMode;
 
 		foreach (List<PlayerModeChooser> mode in PlayerModeChooser.modeVotes)
@@ -39,7 +50,7 @@ public partial class Break : Control
 		for(int i = 0; i < 3; i++){
 			gameModes[i] = listOfGM[rand.Next(0, listOfGM.Count)]; //choose randomly
 			listOfGM.Remove(gameModes[i]); //remove chosen item from the list
-			(gmPanels[i].GetChild(0) as RichTextLabel).Text = gameModes[i].ToString(); //sets label
+			(gmPanels[i].GetNode("text") as RichTextLabel).Text = gameModes[i].ToString(); //sets label
 		}
 	}
 
@@ -70,8 +81,17 @@ public partial class Break : Control
 		GameManager.currentGameMode = gameModes[chosenGM]; //sets current gamemode to newly chosen one
 		GameManager.StartNewGame();
 
-		GD.Print("DZIAŁAAAAA!!!!! UAUAUA");
+		StartGame();
+	}
 
+	public void CharacterSelectionSection()
+	{
+		characterSelectionNode.Visible = true;
+		
+	}
+
+	void StartGame()
+	{
 		GetTree().ChangeSceneToPacked(gameScene);
 	}
 }
