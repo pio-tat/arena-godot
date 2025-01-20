@@ -1,17 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://chiymwhh7psie"]
+[gd_scene load_steps=12 format=3 uid="uid://b8l8fg662g66q"]
 
 [ext_resource type="Script" path="res://scripts/arena/player/PlayerMovement.cs" id="1_lrrhb"]
-[ext_resource type="Script" path="res://scripts/arena/player/PlayerStats.cs" id="2_4bpye"]
-[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://textures/characters/Barry.svg" id="3_6tn0r"]
-[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_jr3w3"]
-[ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_hesgw"]
-[ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_c77wt"]
-[ext_resource type="PackedScene" uid="uid://dmtl0j7w5djfs" path="res://prefabs/hurtbox.tscn" id="7_orad7"]
+[ext_resource type="PackedScene" uid="uid://2tdc4duqpsgb" path="res://prefabs/attack_info.tscn" id="2_5quki"]
+[ext_resource type="PackedScene" uid="uid://lqsxvk4ocbtj" path="res://prefabs/health_component.tscn" id="3_6pf2o"]
+[ext_resource type="Texture2D" uid="uid://bl2nf3g4flx68" path="res://icon.svg" id="3_eosjl"]
+[ext_resource type="Texture2D" uid="uid://dd5xshea4t774" path="res://textures/characters/Barry.svg" id="3_fgi3d"]
+[ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_0gmlf"]
+[ext_resource type="PackedScene" uid="uid://dmtl0j7w5djfs" path="res://prefabs/hurtbox.tscn" id="4_lugob"]
+[ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_h1uln"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwg"]
-size = Vector2(18, 42)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axk8o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqrtd"]
 bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 border_width_left = 1
 border_width_top = 1
@@ -20,7 +18,7 @@ border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 anti_aliasing_size = 0.1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxhpp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnej3"]
 bg_color = Color(0.929412, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
@@ -28,45 +26,51 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.8, 0.8, 0.8, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwg"]
+size = Vector2(18, 42)
+
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("firePoint") groups=["player"]]
-collision_layer = 2
+collision_layer = 10
 script = ExtResource("1_lrrhb")
 firePoint = NodePath("FirePoint")
 
-[node name="PlayerStats" type="Node2D" parent="."]
-script = ExtResource("2_4bpye")
+[node name="AttackInfo" parent="." instance=ExtResource("2_5quki")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.15256e-07, 4.76837e-07)
-scale = Vector2(0.642857, 0.646154)
-texture = ExtResource("3_6tn0r")
+[node name="HealthComponent" parent="." instance=ExtResource("3_6pf2o")]
+maxHealth = 10
 
-[node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oanwg")
-debug_color = Color(0.14902, 0.647059, 0, 0.419608)
-
-[node name="FirePoint" type="Node2D" parent="."]
-position = Vector2(15, 0)
-script = ExtResource("4_hesgw")
-bulletScn = ExtResource("5_c77wt")
-
-[node name="Icon" type="Sprite2D" parent="FirePoint"]
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("3_jr3w3")
-
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="HealthComponent"]
 offset_left = -16.0
 offset_top = -28.0
 offset_right = 16.0
 offset_bottom = -24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_axk8o")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qxhpp")
+theme_override_styles/background = SubResource("StyleBoxFlat_hqrtd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cnej3")
 value = 50.0
 rounded = true
 show_percentage = false
 
-[node name="Hurtbox" parent="." groups=["player"] instance=ExtResource("7_orad7")]
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_lugob")]
+healthComponent = NodePath("../HealthComponent")
 
 [node name="Collider" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_oanwg")
-debug_color = Color(0.14902, 0.647059, 0, 0.419608)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.642857, 0.646154)
+texture = ExtResource("3_fgi3d")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oanwg")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(15, 0)
+script = ExtResource("4_0gmlf")
+bulletScn = ExtResource("5_h1uln")
+
+[node name="Icon" type="Sprite2D" parent="FirePoint"]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_eosjl")
+
+[connection signal="Death" from="HealthComponent" to="." method="OnDeath"]

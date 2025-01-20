@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://db4xkimbtg75"]
+[gd_scene load_steps=8 format=3 uid="uid://db4xkimbtg75"]
 
 [ext_resource type="Script" path="res://scripts/Break.cs" id="1_l6mol"]
 [ext_resource type="PackedScene" uid="uid://dtmw8nrniwmqd" path="res://main_scenes/main_scene.tscn" id="2_yuj5c"]
 [ext_resource type="PackedScene" uid="uid://bakos1driyw8l" path="res://prefabs/ui prefabs/playerModeChooser.tscn" id="3_bl187"]
-[ext_resource type="Script" path="res://scripts/game_break/TimeCounter.cs" id="4_hm2tw"]
+[ext_resource type="Script" path="res://scripts/game_break/GmSelection.cs" id="4_j32jx"]
 [ext_resource type="PackedScene" uid="uid://i1wgx823qvg3" path="res://prefabs/ui prefabs/playerSpace.tscn" id="5_b5jyt"]
+[ext_resource type="Script" path="res://scripts/game_break/character selection/CharacterSelection.cs" id="5_mrfxp"]
+[ext_resource type="PackedScene" uid="uid://bpj3nps5wp38f" path="res://prefabs/ui prefabs/timeCounter.tscn" id="5_o3k5a"]
 
-[node name="game_break" type="Control" node_paths=PackedStringArray("modeSelect", "gmPanels", "timeCounter")]
+[node name="game_break" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,19 +17,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6mol")
 gameScene = ExtResource("2_yuj5c")
-modeSelect = NodePath("GamemodeSelection")
-playerSelScn = ExtResource("3_bl187")
-gmPanels = [NodePath("GamemodeSelection/Gamemode"), NodePath("GamemodeSelection/Gamemode2"), NodePath("GamemodeSelection/Gamemode3")]
-timeCounter = NodePath("GamemodeSelection/TimeCounter")
 
 [node name="GamemodeSelection" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_j32jx")
+playerSelScn = ExtResource("3_bl187")
 
 [node name="Gamemode" type="Panel" parent="GamemodeSelection"]
 layout_mode = 1
@@ -117,24 +116,31 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]gamemode3[/center]"
 
-[node name="TimeCounter" type="RichTextLabel" parent="GamemodeSelection"]
+[node name="TimeCounter" parent="GamemodeSelection" instance=ExtResource("5_o3k5a")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -59.0
-offset_right = 59.0
-offset_bottom = 61.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "[center]20"
-script = ExtResource("4_hm2tw")
-
-[node name="Timer" type="Timer" parent="GamemodeSelection/TimeCounter"]
-autostart = true
+autoStart = true
 
 [node name="CharacterSelection" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_mrfxp")
+playerSpace = ExtResource("5_b5jyt")
+
+[node name="TimeCounter" parent="CharacterSelection" instance=ExtResource("5_o3k5a")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 118.0
+grow_horizontal = 1
+
+[node name="2p" type="Control" parent="CharacterSelection"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,24 +148,139 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="playerSpace" parent="CharacterSelection" instance=ExtResource("5_b5jyt")]
+[node name="0" type="Control" parent="CharacterSelection/2p"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-offset_left = 0.511963
-grow_horizontal = 0
-size_flags_horizontal = 8
-
-[node name="playerSpace2" parent="CharacterSelection" instance=ExtResource("5_b5jyt")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-offset_right = 0.0639648
-offset_bottom = -6.10352e-05
-grow_horizontal = 1
-size_flags_horizontal = 0
-id = 1
+anchor_right = 0.4
+anchor_bottom = 0.6
+offset_right = -0.32
+offset_bottom = -0.176003
 metadata/_edit_use_anchors_ = true
 
-[connection signal="Time" from="GamemodeSelection/TimeCounter" to="." method="SelectMode"]
-[connection signal="timeout" from="GamemodeSelection/TimeCounter/Timer" to="GamemodeSelection/TimeCounter" method="ChangeText"]
+[node name="1" type="Control" parent="CharacterSelection/2p"]
+layout_mode = 1
+anchor_left = 0.599826
+anchor_top = 0.4
+anchor_right = 0.999826
+anchor_bottom = 1.0
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="Control" parent="CharacterSelection/2p"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="3p" type="Control" parent="CharacterSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="0" type="Control" parent="CharacterSelection/3p"]
+layout_mode = 1
+anchor_right = 0.4
+anchor_bottom = 0.6
+offset_right = -0.320007
+offset_bottom = -0.175995
+metadata/_edit_use_anchors_ = true
+
+[node name="1" type="Control" parent="CharacterSelection/3p"]
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.4
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_right = -0.320007
+offset_bottom = -0.175995
+metadata/_edit_use_anchors_ = true
+
+[node name="2" type="Control" parent="CharacterSelection/3p"]
+layout_mode = 1
+anchor_left = 0.599826
+anchor_right = 0.999826
+anchor_bottom = 0.6
+offset_right = -0.319946
+offset_bottom = -0.176025
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="Control" parent="CharacterSelection/3p"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="4p" type="Control" parent="CharacterSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="0" type="Control" parent="CharacterSelection/4p"]
+layout_mode = 1
+anchor_top = 0.25
+anchor_right = 0.3
+anchor_bottom = 0.75
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="1" type="Control" parent="CharacterSelection/4p"]
+layout_mode = 1
+anchor_left = 0.7
+anchor_top = 0.25
+anchor_right = 0.999826
+anchor_bottom = 0.75
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="2" type="Control" parent="CharacterSelection/4p"]
+layout_mode = 1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.5
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="3" type="Control" parent="CharacterSelection/4p"]
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_right = -0.32
+offset_bottom = -0.176003
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="Control" parent="CharacterSelection/4p"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

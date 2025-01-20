@@ -9,8 +9,7 @@ public partial class ArenaManager : Node2D
 	[Export] public Node2D[] gamemodes;
 	Node2D currentMap;
 	List<Player> playerList;
-	[Export] PackedScene padPlayerScn;
-	[Export] PackedScene keyPlayerScn;
+	[Export] PackedScene playerScn;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -49,16 +48,14 @@ public partial class ArenaManager : Node2D
 		}	
 
 		IPlayer playerInfo;
-			if(player.Id < 2)
-				playerInfo = keyPlayerScn.Instantiate() as IPlayer;
-			else
-				playerInfo = padPlayerScn.Instantiate() as IPlayer;
-			playerInfo.PlayerId = player.Id;
-			playerInfo.CharacterProperties = CharactersStorage.GetCharacter(player.currentCharacter);
-			(playerInfo as Node2D).Position = spawnPoint.Position;
-			GetTree().CurrentScene.AddChild(playerInfo as Node);
 
-			player.playerNode = playerInfo as Node;
-			mainCamera.players.Add(playerInfo as Node2D);
+		playerInfo = playerScn.Instantiate() as IPlayer;
+		playerInfo.PlayerId = player.Id;
+		playerInfo.CharacterProperties = CharactersStorage.GetCharacter(player.currentCharacter);
+		(playerInfo as Node2D).Position = spawnPoint.Position;
+		
+		GetTree().CurrentScene.AddChild(playerInfo as Node);
+		player.playerNode = playerInfo as Node;
+		mainCamera.players.Add(playerInfo as Node2D);
 	}
 }

@@ -50,15 +50,15 @@ public partial class KeyboardMovement : CharacterBody2D, IPlayer
 		}
 
 		//inputs for jumping and going down
-		if(Input.IsActionJustPressed("up" + keyboardId) && (IsOnFloor() || jumps < 2 && doubleJump)){
+		if(isJumpButtonPressed() && (IsOnFloor() || jumps < 2 && doubleJump)){
 			velocity.Y = -jumpVelocity;
 			jumps += 1;
 		}
-		if(Input.IsActionJustPressed("down" + keyboardId) && IsOnFloor())
+		if(isDownPressed() && IsOnFloor())
 			Position = new Vector2(Position.X, Position.Y + 1);
 
 		velocity.X = 0;
-		float walk = Input.GetAxis("left" + keyboardId, "right" + keyboardId); //making walk vector
+		float walk = GetHorizontalAxis(); //making walk vector
 		velocity.X = moveSpeed * walk; //making walk working
 
 		//flipping firepoint
@@ -96,4 +96,48 @@ public partial class KeyboardMovement : CharacterBody2D, IPlayer
 
 		GetNode<Sprite2D>("Sprite").Texture = characterProperties.Texture;
 	}
+
+	#region input
+	bool isLeftPressed()
+	{
+		if(playerId < 2){
+			return Input.IsActionJustPressed("left" + (playerId+1));
+		}else{
+			return Input.GetJoyAxis(playerId - 2, JoyAxis.LeftX) < -0.2f;
+		}
+	}
+	bool isRightPressed()
+	{
+		if(playerId < 2){
+			return Input.IsActionJustPressed("right" + (playerId+1));
+		}else{
+			return Input.GetJoyAxis(playerId - 2, JoyAxis.LeftX) > 0.2f;
+		}
+	}
+	bool isJumpButtonPressed()
+	{
+		if(playerId < 2){
+			return Input.IsActionJustPressed("up" + (playerId+1));
+		}else{
+			return Input.IsJoyButtonPressed(playerId - 2, JoyButton.A);
+		}
+	}
+	bool isDownPressed()
+	{
+		if(playerId < 2){
+			return Input.IsActionJustPressed("right" + (playerId+1));
+		}else{
+			return Input.GetJoyAxis(playerId - 2, JoyAxis.LeftY) > 0.5f;
+		}
+	}
+
+	float GetHorizontalAxis()
+	{
+		if(playerId < 2){
+			return Input.GetAxis("left" + keyboardId, "right" + keyboardId);
+		}else{
+			return Input.GetJoyAxis(playerId - 2, JoyAxis.LeftX);
+		}
+	}
+	#endregion
 }

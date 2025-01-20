@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtmw8nrniwmqd"]
+[gd_scene load_steps=7 format=3 uid="uid://dtmw8nrniwmqd"]
 
 [ext_resource type="Script" path="res://scripts/ArenaManager.cs" id="1_k51q0"]
-[ext_resource type="PackedScene" uid="uid://chiymwhh7psie" path="res://prefabs/Player.tscn" id="2_oblso"]
-[ext_resource type="PackedScene" uid="uid://djbchm6aecc8p" path="res://prefabs/KeyPlayer.tscn" id="3_ogfm3"]
+[ext_resource type="PackedScene" uid="uid://b8l8fg662g66q" path="res://prefabs/Player.tscn" id="2_oblso"]
 [ext_resource type="TileSet" uid="uid://dgnridxphjyns" path="res://Placeholder.tres" id="4_edv5u"]
 [ext_resource type="Script" path="res://scripts/arena/CameraLogic.cs" id="5_t6swq"]
 [ext_resource type="PackedScene" uid="uid://bx0ifd21lnk70" path="res://prefabs/hitbox.tscn" id="6_tehrl"]
@@ -13,8 +12,7 @@
 script = ExtResource("1_k51q0")
 mainCamera = NodePath("Camera2D")
 gamemodes = [NodePath("Gamemode 1")]
-padPlayerScn = ExtResource("2_oblso")
-keyPlayerScn = ExtResource("3_ogfm3")
+playerScn = ExtResource("2_oblso")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-169.915, -25.1095)

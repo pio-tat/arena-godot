@@ -14,6 +14,7 @@ public partial class CharactersStorage : Node
         instance = this;
 		string[] resources = DirAccess.GetFilesAt("./resources/characters");
 		foreach(string res in resources){
+			GD.Print("res");
 			string name = res.Left(res.Find("."));
 			CharacterResource character = ResourceLoader.Load("./resources/characters/" + res) as CharacterResource;
 			characterDict.Add(name, character);
