@@ -22,7 +22,7 @@ public partial class CharacterSelection : Control
 			Control parent = layout.GetNode<Control>(i.ToString());
 
 			PlayerSpace player = playerSpace.Instantiate<PlayerSpace>();
-			player.id = i;
+			player.id = PlayerManager.PlayerList[i].Id;
 			parent.AddChild(player);
 			player.AnchorsPreset = 1;
 		}

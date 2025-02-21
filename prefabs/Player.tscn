@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8l8fg662g66q"]
+[gd_scene load_steps=13 format=3 uid="uid://b8l8fg662g66q"]
 
 [ext_resource type="Script" path="res://scripts/arena/player/PlayerMovement.cs" id="1_lrrhb"]
 [ext_resource type="PackedScene" uid="uid://2tdc4duqpsgb" path="res://prefabs/attack_info.tscn" id="2_5quki"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/arena/player/Attack.cs" id="4_0gmlf"]
 [ext_resource type="PackedScene" uid="uid://dmtl0j7w5djfs" path="res://prefabs/hurtbox.tscn" id="4_lugob"]
 [ext_resource type="PackedScene" uid="uid://b1u82x1ic2xoj" path="res://prefabs/bullet.tscn" id="5_h1uln"]
+[ext_resource type="PackedScene" uid="uid://duyla1544waqf" path="res://prefabs/Sprite.tscn" id="9_f8xmu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqrtd"]
 bg_color = Color(0.298039, 0.298039, 0.298039, 1)
@@ -56,7 +57,8 @@ healthComponent = NodePath("../HealthComponent")
 [node name="Collider" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_oanwg")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Texture" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2.38419e-07, 0)
 scale = Vector2(0.642857, 0.646154)
 texture = ExtResource("3_fgi3d")
@@ -72,5 +74,7 @@ bulletScn = ExtResource("5_h1uln")
 [node name="Icon" type="Sprite2D" parent="FirePoint"]
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("3_eosjl")
+
+[node name="Sprite" parent="." instance=ExtResource("9_f8xmu")]
 
 [connection signal="Death" from="HealthComponent" to="." method="OnDeath"]

@@ -19,6 +19,7 @@ public partial class PlayerMovement : CharacterBody2D, IPlayer
 	CollisionShape2D collider;
     private ArenaManager arenaManager;
     [Export] Attack firePoint;
+	Sprite sprite;
 
 	bool jumpButtonPressed = false;
 
@@ -32,6 +33,7 @@ public partial class PlayerMovement : CharacterBody2D, IPlayer
 	{
         keyboardId = (playerId + 1).ToString();
 		collider = GetNode<CollisionShape2D>("Collider");
+		sprite = GetNode<Sprite>("Sprite");
 
 		arenaManager = GetParent() as ArenaManager;
 
@@ -59,6 +61,7 @@ public partial class PlayerMovement : CharacterBody2D, IPlayer
 			GD.Print("Player" + playerId + " has just jumped!");
 			velocity.Y = -jumpVelocity;
 			jumps += 1;
+			sprite.JumpAnimation();
 		}
 		if(isDownPressed() && IsOnFloor())
 			Position = new Vector2(Position.X, Position.Y + 1);
@@ -70,11 +73,15 @@ public partial class PlayerMovement : CharacterBody2D, IPlayer
 		if(walk < -0.2f){
 			velocity.X = -moveSpeed;
 			firePoint.FlipX(true);
+			sprite.FlipX(true);
 		}	
 		else if(walk > 0.2f){
 			velocity.X = moveSpeed;
 			firePoint.FlipX(false);
+			sprite.FlipX(false);
 		}
+
+		sprite.UpdateAnimationProperties(Mathf.Abs(walk) > 0.2f, velocity.Y);
 
 		//making walking work
 		Velocity = velocity;
@@ -101,7 +108,7 @@ public partial class PlayerMovement : CharacterBody2D, IPlayer
 		firePoint.bps = characterProperties.AttackProperties.AttacksPerSecond;
 		firePoint.bulletSpeed = characterProperties.AttackProperties.BulletSpeed;
 
-		GetNode<Sprite2D>("Sprite").Texture = characterProperties.Texture;
+		GetNode<Sprite2D>("Texture").Texture = characterProperties.Texture;
 	}
 
 	#region input
